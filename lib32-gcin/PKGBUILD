@@ -1,0 +1,69 @@
+# Contributor: Yushin Huang <hyslion@gmail.com>
+# Contributor: Andreas Radke <andyrtr@archlinux.org>
+# Contributor: damir <damir@archlinux.org>
+# Contributor: BrLi <rainman59118 AT gmail dot com>
+# Maintainer: s8321414 <s8321414 AT gmail dot com>
+
+_pkgname=gcin
+pkgname=lib32-${_pkgname}
+pkgver=2.8.3
+pkgrel=1
+pkgdesc='gcin im-module for 32-bit applications'
+url='http://hyperrate.com/dir.php?eid=67'
+license=('LGPL')
+arch=('x86_64')
+depends=("gcin")
+makedepends=('lib32-gtk2' 'lib32-qt' 'gcc-multilib')
+install='lib32-gcin-gtk2.install'
+source=("http://hyperrate.com/gcin-source/${_pkgname}-${pkgver}.tar.xz"
+	     "qconfig.h"
+	     "configure.patch"
+	     "qt4-im.patch"
+	     "qt5.patch")
+sha1sums=('95b980f7cf9dc2ad91803113cdbb4ac831f056de'
+          '6c36b1b7d1240ae8391ac7e52997f464149a6347'
+          '98d43080da65b6ac63e747d2a9da41abd5ce11d2'
+          '35a288dd74f28fd730ac093878680f74630ea57b'
+          'e4273dcf1ec78ff139c2c40c1735fb5f3690add6')
+          
+build() {
+    cd "${srcdir}/"
+    mkdir -p QtCore
+    cp qconfig.h QtCore
+
+    export CC="gcc -m32 -I${srcdir} -I${srcdir}/QtCore"
+    export CXX="g++ -m32 -I${srcdir} -I${srcdir}/QtCore"
+
+	cd "${srcdir}/${_pkgname}-${pkgver}"
+
+    patch -p1 < ${srcdir}/configure.patch
+    patch -p1 < ${srcdir}/qt4-im.patch
+    patch -p1 < ${srcdir}/qt5.patch
+
+	sed '/include suffixes-rule/a \
+		CFLAGS+='"${CFLAGS}"' \
+		LDFLAGS+='"${LDFLAGS}"' \
+		OPTFLAGS=' \
+		-i Makefile
+	./configure           \
+        --prefix=/usr     \
+        --use_i18n=Y \
+        --gcinlibdir=/usr/lib32 \
+        --use_qt5=N
+
+    make -C im-client # build gtk-im as dependency too
+    make -C qt4-im
+}
+package(){
+	#gcin-im-client
+	cd "${srcdir}/${_pkgname}-${pkgver}/im-client"
+	make DESTDIR="${pkgdir}" install
+
+	#lib32-gcin-gtk2
+	cd "${srcdir}/${_pkgname}-${pkgver}/gtk-im"
+	make DESTDIR="${pkgdir}" install
+
+	#lib32-gcin-qt4
+	cd "${srcdir}/${_pkgname}-${pkgver}/qt4-im"
+	make DESTDIR="${pkgdir}" install
+}

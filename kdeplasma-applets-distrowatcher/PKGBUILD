@@ -1,0 +1,32 @@
+# Maintainer: s8321414 <s8321414 at gmail.com>
+# Arch Linux maintainers and contributors:
+# Maintainer: archtux <antonio dot arias99999 at gmail dot com>
+
+pkgname=kdeplasma-applets-distrowatcher
+pkgver=0.10.3
+pkgrel=1
+pkgdesc="Plasmoid that displays the latest releases of Linux distributions and packages, as published in distrowatch.com."
+arch=('x86_64')
+url="http://kde-apps.org/content/show.php/Distro+Watcher+?content=157314"
+license=('GPL3')
+depends=('kdelibs>4.10')
+makedepends=('automoc4' 'cmake')
+source=(http://kde-apps.org/CONTENT/content-files/157314-distrowatcher-$pkgver.tar.gz)
+md5sums=('e7f52e8decd9a32cdab5beb43f68015c')
+
+prepare() {
+  cd $srcdir/distrowatcher-$pkgver
+  mkdir build
+  cd build
+  cmake -DQT_QMAKE_EXECUTABLE=/usr/bin/qmake -DCMAKE_INSTALL_PREFIX=`kde4-config --prefix` ..
+}
+
+build() {
+  cd $srcdir/distrowatcher-$pkgver/build
+  make
+}
+
+package() {
+  cd $srcdir/distrowatcher-$pkgver/build
+  make DESTDIR=$pkgdir install
+}

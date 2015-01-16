@@ -1,0 +1,21 @@
+# Maintainer: s8321414 <s8321414 at gmail.com>
+# Arch Linux maintainers and contributors:
+# Maintainer: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+pkgname=otf-source-serif-pro
+pkgver=1.014
+pkgrel=2
+pkgdesc="A set of serif OpenType fonts designed to complement Source Sans Pro"
+arch=(any)
+url="http://sourceforge.net/projects/sourceserifpro.adobe"
+license=('custom')
+depends=('fontconfig')
+install=otf.install
+source=('https://github.com/adobe-fonts/source-serif-pro/archive/1.014R.zip')
+sha256sums=('50e3cdf3499967daf2ba72bc1063568f90c76d7246bd0ac52318cb92c264eaa9')
+
+package() {
+  cd source-serif-pro-${pkgver}R
+  install -d "$pkgdir/usr/share/fonts/adobe-source-serif-pro"
+  install -t "$pkgdir/usr/share/fonts/adobe-source-serif-pro" -m644 OTF/*.otf
+  install -Dm644 LICENSE.txt "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}

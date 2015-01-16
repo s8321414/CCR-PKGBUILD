@@ -1,0 +1,24 @@
+--- gcin-2.8.3.orig/qt5-im/Makefile	2014-11-09 15:03:24.000000000 +0800
++++ gcin-2.8.3/qt5-im/Makefile	2014-12-23 16:16:12.476205049 +0800
+@@ -4,8 +4,8 @@
+ IMMODULES=$(libdir)/$(DEB_BUILD_MULTIARCH)/$(QTIM)
+ 
+ INCS=-I../im-client -I/usr/include/X11 `pkg-config Qt5Core Qt5Gui Qt5PlatformSupport QtDBus --cflags`
+-# dirty fix for ubuntu 14.04,  pkg-config Qt5Gui --cflags return -I/usr/include/qt5/QtGui, missing 5.2.1/QtGui
+-INCS+=-I /usr/include/qt5/QtGui/5.2.1/QtGui
++# dirty fix for Chakra,  pkg-config Qt5Gui --cflags return -I/usr/include/qt5/QtGui, missing 5.2.1/QtGui
++INCS+=-I /usr/include/qt5/QtGui/5.3.2/QtGui
+ 
+ CXXFLAGS=$(OPTFLAGS) $(INCS) -Wall -D_REENTRANT -DUNIX=1 -fPIC  -DQT5 -DQT_SHARED -DQT_IMMODULE -DPIC -DDEBUG="0$(GCIN_DEBUG)"
+ OBJS= moc_gcin-qt5.o gcin-qt5.o gcin-imcontext-qt5.o moc_qgcinplatforminputcontext.o
+--- gcin-2.8.3.orig/qt5-im/gcin-imcontext-qt5.cpp	2014-11-21 13:56:01.000000000 +0800
++++ gcin-2.8.3/qt5-im/gcin-imcontext-qt5.cpp	2014-12-23 16:16:33.098209101 +0800
+@@ -22,7 +22,7 @@
+ } XPoint;
+ #endif
+ #include "../util.h"
+-#include "gcin-im-client.h"
++#include "../im-client/gcin-im-client.h"
+ #include "qgcinplatforminputcontext.h"
+ 
+ static WId focused_win;
