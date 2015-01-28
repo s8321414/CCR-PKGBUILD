@@ -7,16 +7,16 @@
 
 
 pkgname=libaacs
-pkgver=0.7.1
+pkgver=0.8.0
 pkgrel=1
 pkgdesc="Advanced Access Content System"
-arch=('i686' 'x86_64')
+arch=('x86_64')
 license=('LGPL')
 url="http://www.videolan.org/developers/libaacs.html"
 depends=('libgcrypt')
 source=("ftp://ftp.videolan.org/pub/videolan/${pkgname}/${pkgver}/${pkgname}-${pkgver}.tar.bz2")
 conflicts=('libaacs-git')
-sha256sums=('ecc49a22ae2a645cfb5b8e732b51fe0e2684e6488a68debc5edd6e07edadb2b0')
+sha256sums=('5e44545c7c4cb48bea49ff6b19d148416663593d6125ac8734776df21154ba94')
 
 build() {
     cd "${srcdir}/${pkgname}-${pkgver}"
