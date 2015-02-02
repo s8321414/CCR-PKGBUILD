@@ -6,18 +6,18 @@
 # Contributor: Daniel J Griffiths <ghost1227@archlinux.us>
 
 pkgname=qcad
-pkgver=3.7.6.0
+pkgver=3.7.7.0
 pkgrel=1
 pkgdesc="A 2D CAD package based upon Qt"
 arch=('x86_64')
 url="http://www.ribbonsoft.com/qcad.html"
 license=('GPL3')
 depends=('qtwebkit')
-makedepends=('glu''gdb')
+makedepends=('glu' 'gdb')
 options=('libtool')
 source=($pkgname-$pkgver.tar.gz::https://github.com/qcad/qcad/archive/v${pkgver}.tar.gz
         QCad.desktop)
-md5sums=('caca6ce05175225de45f42189e8a7748'
+md5sums=('b5d57988b2fe38ceae18ba205c391203'
          '35100eaedbdf6625f6e6a09b177854cd')
 
 build() {
