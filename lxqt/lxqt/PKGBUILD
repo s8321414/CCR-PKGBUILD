@@ -3,8 +3,8 @@
 # Contributor: Antonio Rojas
 
 pkgname=lxqt
-pkgver=0.8.0
-pkgrel=5
+pkgver=0.9.0
+pkgrel=1
 pkgdesc="Metapackage to install a full LXQt desktop"
 arch=('any')
 url='http://lxqt.org/'
