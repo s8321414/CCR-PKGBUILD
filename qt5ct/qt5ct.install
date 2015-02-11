@@ -1,0 +1,12 @@
+post_install() {
+  echo "Remember to add line 'export QT_QPA_PLATFORMTHEME=qt5ct' to ~/.profile and re-login."
+}
+
+post_upgrade() {
+  echo "Remember to add line 'export QT_QPA_PLATFORMTHEME=qt5ct' to ~/.profile and re-login."
+  echo "You may want to check it again."
+}
+
+post_remove() {
+  echo "You may want to delete line 'export QT_QPA_PLATFORMTHEME=qt5ct' from ~/.profile and re-login."
+}
