@@ -7,12 +7,12 @@
 
 pkgname=gcin
 pkgver=2.8.3
-pkgrel=2
+pkgrel=3
 pkgdesc='Input method server supporting various input methods'
 arch=('x86_64')
 license=('LGPL')
 url='http://hyperrate.com/dir.php?eid=67'
-depends=('gtk2>=2.16.1' 'libxtst')
+depends=('gtk2' 'libxtst')
 makedepends=('qt' 'anthy' 'qt5-base' 'gtk3')
 optdepends=('qt: support for qt4 input method'
             'qt5-base: support for qt5 input method'
@@ -20,21 +20,17 @@ optdepends=('qt: support for qt4 input method'
             'anthy: support for anthy input method')
 install=${pkgname}.install
 source=("http://hyperrate.com/gcin-source/${pkgname}-${pkgver}.tar.xz"
-	'qt4.patch'
-	'libdir.patch'
-	'qt5.patch')
+	'qt4.patch')
 sha1sums=('95b980f7cf9dc2ad91803113cdbb4ac831f056de'
-          '8cb63a2e368aa43769532812bfc2c724327cfe53'
-          'f8c7db8487ef2c8edd95e6f5af6d145460285675'
-          'e4273dcf1ec78ff139c2c40c1735fb5f3690add6')
+          '8cb63a2e368aa43769532812bfc2c724327cfe53')
 
 prepare() {
   cd "${srcdir}/${pkgname}-${pkgver}"
 
   patch -p1 -i ../qt4.patch
-  patch -p1 -i ../libdir.patch
-  patch -p1 -i ../qt5.patch
   
+  sed 's:qt5/QtGui/5.2.1:qt5/QtGui/5.4.0:g' -i qt5-im/Makefile
+  sed 's/lib64/lib/g' -i configure
   sed '/include suffixes-rule/a \
         CFLAGS+='"${CFLAGS}"' \
         LDFLAGS+='"${LDFLAGS}"' \
