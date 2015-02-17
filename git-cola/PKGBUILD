@@ -3,20 +3,18 @@
 # Arch Maintainer: TDY <tdy@gmx.com>
 
 pkgname=git-cola
-pkgver=2.0.8
+pkgver=2.1.1
 pkgrel=1
 pkgdesc="A powerful GUI for Git"
 arch=('x86_64')
 url=("http://git-cola.github.com/")
 license=('GPL')
-depends=('git' 'python3-pyqt>=4.4')
+depends=('git' 'python3-pyqt4>=4.4' 'icu')
 makedepends=('asciidoc' 'docbook-xsl' 'python3-sphinx' 'rsync' 'xmlto')
-optdepends=('pyinotify: for inotify support'
+optdepends=('python3-pyinotify: for inotify support'
             'tk: to use the built-in ssh-askpass handler')
 source=("https://github.com/git-cola/git-cola/archive/v${pkgver}.zip")
-md5sums=('f91f2bf2cac2aa90f7a142674a9d21a0')
-
-
+md5sums=('bacf5a2707b932e5385b080a4d01fbeb')
 
 build() 
 {
@@ -29,4 +27,4 @@ build()
   cd "$srcdir/$pkgname-$pkgver"
   make prefix=/usr DESTDIR="$pkgdir" install{,-doc,-html}
  
-} 
+}
