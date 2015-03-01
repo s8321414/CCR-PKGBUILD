@@ -3,16 +3,16 @@
 # Maintainer: archtux <antonio dot arias99999 at gmail dot com>
 
 pkgname=kdeplasma-applets-distrowatcher
-pkgver=0.10.3
+pkgver=0.11
 pkgrel=1
 pkgdesc="Plasmoid that displays the latest releases of Linux distributions and packages, as published in distrowatch.com."
 arch=('x86_64')
 url="http://kde-apps.org/content/show.php/Distro+Watcher+?content=157314"
 license=('GPL3')
-depends=('kdelibs>4.10')
+depends=('kdelibs' 'kde-workspace' 'libdbusmenu-qt')
 makedepends=('automoc4' 'cmake')
 source=(http://kde-apps.org/CONTENT/content-files/157314-distrowatcher-$pkgver.tar.gz)
-md5sums=('e7f52e8decd9a32cdab5beb43f68015c')
+md5sums=('c22b8be498ba662af0fc3681bedbdbb4')
 
 prepare() {
   cd $srcdir/distrowatcher-$pkgver
