@@ -3,7 +3,7 @@
 # Maintainer: Sébastien "Seblu" Luttringer
 
 pkgname=docker
-pkgver=1.6.0
+pkgver=1.7.0
 pkgrel=1
 epoch=1
 pkgdesc='Pack, ship and run any application as a lightweight container'
@@ -25,12 +25,6 @@ build() {
   export AUTO_GOPATH=1
   ./hack/make.sh dynbinary
 }
-
-#check() {
-#  cd "$_magic/docker"
-#  # Will be added upstream soon
-#  ./hack/make.sh dyntest
-#}
 
 package() {
   cd docker
