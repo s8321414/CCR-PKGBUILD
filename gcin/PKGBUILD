@@ -7,7 +7,7 @@
 
 pkgname=gcin
 pkgver=2.8.3
-pkgrel=4
+pkgrel=5
 pkgdesc='Input method server supporting various input methods'
 arch=('x86_64')
 license=('LGPL')
@@ -29,7 +29,7 @@ prepare() {
 
   patch -p1 -i ../qt4.patch
   
-  sed 's:qt5/QtGui/5.2.1:qt5/QtGui/5.4.1:g' -i qt5-im/Makefile
+  sed 's:qt5/QtGui/5.2.1:qt5/QtGui/5.4.2:g' -i qt5-im/Makefile
   sed 's/lib64/lib/g' -i configure
   sed '/include suffixes-rule/a \
         CFLAGS+='"${CFLAGS}"' \
