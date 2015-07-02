@@ -1,0 +1,61 @@
+# Maintainer: Jeff Huang <s8321414[at]gmail[dot]com>
+# Contributor: tiemay <echo bnVhbEBjb3VudGVybWFpbC5jb20K | base64 -d>
+# Contributor: Laurent Carlier <lordheavym@gmail.com>
+# Contributor: Konsta Kokkinen <kray@tsundere.fi>, Afixane
+
+pkgname=minetest
+pkgver=0.4.12
+pkgrel=1
+pkgdesc='An Infiniminer/Minecraft inspired game and game engine.'
+arch=('x86_64')
+url='http://minetest.net/'
+screenshot="https://d3hzxuizpdmi2q.cloudfront.net/qv3SCz2Yo3Ip.jpg"
+license=('LGPL' 'CCPL:cc-by-sa')
+depends=('sqlite3' 'freetype2' 'leveldb' 'openal' 'libvorbis' 'libogg' 'curl' 'irrlicht' 
+         'hicolor-icon-theme' 'mesa' 'gmp' 'luajit')
+makedepends=('cmake')
+conflicts=('minetest-git')
+install=minetest.install
+source=(${pkgname}-${pkgver}.tar.gz::https://github.com/${pkgname}/${pkgname}/tarball/${pkgver}
+	${pkgname}_game-${pkgver}.tar.gz::https://github.com/${pkgname}/${pkgname}_game/tarball/${pkgver}
+	minetest@.service)
+sha256sums=('8d4e77310ceef4d804df8b2b0f40e822954fd5c7c2199921b54b7f20e2f7d8f9'
+            '42c36cbb6969835b09b363ba82c4dd04dc6f8646b70a58c2d6eca1342d9ebcb4'
+            '2d80b4ff925770bdf3d857debb2ad11227cc9b022eb01a358b18f8d5f2641a5c')
+
+build() {
+  cd "${srcdir}"/minetest-minetest-*
+  cmake . -DCMAKE_INSTALL_PREFIX=/usr \
+	  -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+	  -DBUILD_SERVER=1 \
+	  -DBUILD_CLIENT=1 \
+	  -DENABLE_GETTEXT=1 \
+	  -DENABLE_FREETYPE=1 \
+	  -DENABLE_GLES=1 \
+	  -DENABLE_SOUND=1 \
+	  -DENABLE_SYSTEM_GMP=1 \
+	  -DENABLE_LUAJIT=1 \
+	  -DRUN_IN_PLACE=0 \
+	  -DENABLE_LEVELDB=1 \
+          -DENABLE_REDIS=0
+  make
+}
+
+package() {
+  cd "${srcdir}"/minetest-minetest-*
+  make DESTDIR="${pkgdir}" install
+  
+  # Install systemd service file.
+  install -Dm644 ../minetest@.service \
+    "$pkgdir"/usr/lib/systemd/system/minetest@.service
+
+  # Put game in game engine.
+  mv "${srcdir}"/minetest-minetest_game-* "${pkgdir}"/usr/share/minetest/games
+  
+  # Rename game.
+  cd "${pkgdir}"/usr/share/minetest/games
+  mv minetest-minetest_game-* minetest_game
+
+  # Cleanup small unneeded file.
+  rm minetest_game/.gitignore
+}
