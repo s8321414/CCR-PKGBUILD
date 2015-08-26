@@ -4,7 +4,7 @@
 # Contributor: Konsta Kokkinen <kray@tsundere.fi>, Afixane
 
 pkgname=minetest
-pkgver=0.4.12
+pkgver=0.4.13
 pkgrel=1
 pkgdesc='An Infiniminer/Minecraft inspired game and game engine.'
 arch=('x86_64')
@@ -19,8 +19,8 @@ install=minetest.install
 source=(${pkgname}-${pkgver}.tar.gz::https://github.com/${pkgname}/${pkgname}/tarball/${pkgver}
 	${pkgname}_game-${pkgver}.tar.gz::https://github.com/${pkgname}/${pkgname}_game/tarball/${pkgver}
 	minetest@.service)
-sha256sums=('8d4e77310ceef4d804df8b2b0f40e822954fd5c7c2199921b54b7f20e2f7d8f9'
-            '42c36cbb6969835b09b363ba82c4dd04dc6f8646b70a58c2d6eca1342d9ebcb4'
+sha256sums=('40bafab13e20e7a550ceaa25ef82dd7b4b8188ee8e8080e1ae9295b82603d5e1'
+            '13a8b474b439da326f627290b06065f7f5adff12d8462f29114ba818653ec604'
             '2d80b4ff925770bdf3d857debb2ad11227cc9b022eb01a358b18f8d5f2641a5c')
 
 build() {
