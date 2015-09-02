@@ -7,7 +7,7 @@
 _pkgname=gcin
 pkgname=lib32-${_pkgname}
 pkgver=2.8.3
-pkgrel=5
+pkgrel=6
 pkgdesc='gcin im-module for 32-bit applications'
 url='http://hyperrate.com/dir.php?eid=67'
 license=('LGPL')
@@ -37,7 +37,7 @@ prepare() {
     patch -p1 < ${srcdir}/configure.patch
     patch -p1 < ${srcdir}/qt4-im.patch
 
-    sed 's:qt5/QtGui/5.2.1:qt5/QtGui/5.4.2:g' -i qt5-im/Makefile
+    sed 's:qt5/QtGui/5.2.1:qt5/QtGui/5.5.0:g' -i qt5-im/Makefile
     sed '/include suffixes-rule/a \
 	CFLAGS+='"${CFLAGS}"' \
 	LDFLAGS+='"${LDFLAGS}"' \
