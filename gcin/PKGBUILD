@@ -6,8 +6,8 @@
 # Maintainer: s8321414 <s8321414 at gmail.com> & Chakra Taiwan Community
 
 pkgname=gcin
-pkgver=2.8.3
-pkgrel=7
+pkgver=2.8.4
+pkgrel=1
 pkgdesc='Input method server supporting various input methods'
 arch=('x86_64')
 license=('LGPL')
@@ -22,7 +22,7 @@ install=${pkgname}.install
 source=("http://hyperrate.com/gcin-source/${pkgname}-${pkgver}.tar.xz"
 	'qt4.patch'
 	'qt-5.5.patch')
-sha1sums=('95b980f7cf9dc2ad91803113cdbb4ac831f056de'
+sha1sums=('f422d58aecf65f1d674c79c5c5d346ae568d52d3'
           '8cb63a2e368aa43769532812bfc2c724327cfe53'
           'fd29b91d7b573546ecb3a8cb0341d4f11364cd1a')
 
@@ -32,7 +32,6 @@ prepare() {
   patch -p1 -i ../qt4.patch
   patch -p1 -i ../qt-5.5.patch
   
-  sed 's:qt5/QtGui/5.2.1:qt5/QtGui/5.5.0:g' -i qt5-im/Makefile
   sed 's/lib64/lib/g' -i configure
   sed '/include suffixes-rule/a \
         CFLAGS+='"${CFLAGS}"' \
