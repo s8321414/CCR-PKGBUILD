@@ -3,27 +3,26 @@
 #Maintainer: masutu <masutu dot atch at gmail dot com>
 #Contributor: Jonathan Fine <were.Vire@gmail.com>
 pkgname=glnemo2
-pkgver=1.8.1
+pkgver=1.9.0
 pkgrel=1
 pkgdesc="an interactive visualization 3D program for nbody snapshots."
 arch=('x86_64')
 url="http://projets.oamp.fr/projects/glnemo2"
 license=('GPL')
-depends=('glu' 'qt5-base')
+depends=('glu' 'ccfits' 'qt5-base')
 makedepens=('cmake' 'qt5-tools')
-source=(http://projets.lam.fr/attachments/download/1631/glnemo2_${pkgver}.tar.gz)
-md5sums=('9998fe1d9d51fa30cc746613c144598c')
+source=(http://projets.lam.fr/attachments/download/2308/glnemo2-${pkgver}.tar.gz)
+md5sums=('28d58e7932ee2998fd0951c1d6d72bf9')
 noextract=( ${source[@]##*/} )
 
 build() {
         cd $srcdir
 
         #work around strange bsdtar errors
-        tar xfs ../$pkgname\_$pkgver.tar.gz
+        tar xfs ../$pkgname\-$pkgver.tar.gz
         
         cd $srcdir/$pkgname
-        mkdir -p build
-        cd build
+        mkdir -p build && cd build
         cmake ..
         
         make
