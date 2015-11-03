@@ -1,13 +1,10 @@
-#
-# Chakra community repo packages, part of chakraos.org
-#
 # Contributor: Giuseppe Calà <jiveaxe@gmail.com>
 # Contributor: Brli <rainman59118 at gmail.com> & Chakra Taiwan Community
-# Maintainer: s8321414 <s8321414 at gmail.com> & Chakra Taiwan Community
+# Maintainer: s8321414 <s8321414 at chakraos.org> & Chakra Taiwan Community
 
 pkgname=gcin
 pkgver=2.8.4
-pkgrel=1
+pkgrel=2
 pkgdesc='Input method server supporting various input methods'
 arch=('x86_64')
 license=('LGPL')
