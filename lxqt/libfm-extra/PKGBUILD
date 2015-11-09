@@ -7,7 +7,7 @@
 
 pkgname=libfm-extra
 pkgver=1.2.3
-pkgrel=3
+pkgrel=4
 pkgdesc='Extra library for file management' 
 url='http://pcmanfm.sourceforge.net/'
 arch=('x86_64')
@@ -31,4 +31,11 @@ build() {
 package() {
   cd ${srcdir}/libfm-${pkgver}
   make DESTDIR="${pkgdir}" install
+  
+  rm -rf "$pkgdir"/usr/include/libfm
+  mkdir -p "$pkgdir"/usr/include/libfm
+   
+  mv "$pkgdir"/usr/include/libfm-*/*.h "$pkgdir/usr/include/libfm"
+  
+  rm -rf "$pkgdir"/usr/include/libfm-*
 }
