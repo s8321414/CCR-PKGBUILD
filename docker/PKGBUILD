@@ -1,9 +1,9 @@
-# Maintainer: s8321414 <s8321414 at gmail.com>
+# Maintainer: s8321414 <s8321414@chakraos.org>
 # Arch Linux maintainers and contributors:
 # Maintainer: Sébastien "Seblu" Luttringer
 
 pkgname=docker
-pkgver=1.8.2
+pkgver=1.9.0
 pkgrel=1
 pkgdesc='Pack, ship and run any application as a lightweight container'
 arch=('x86_64')
