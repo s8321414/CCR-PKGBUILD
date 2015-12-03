@@ -3,7 +3,7 @@
 # Maintainer: boenki <boenki at gmx dot de>
 
 pkgname=otter-browser
-pkgver=0.9.07
+pkgver=0.9.08
 pkgrel=1
 pkgdesc="Browser aiming to recreate classic Opera (12.x) UI using Qt5."
 arch=('x86_64')
@@ -14,7 +14,7 @@ depends=('qt5-multimedia' 'qt5-webkit' 'qt5-script' 'hicolor-icon-theme' 'deskto
 makedepends=('cmake' 'qt5-tools')
 source=(${pkgname}-${pkgver}.tar.gz::https://github.com/Emdek/otter/archive/v$pkgver.tar.gz)
 install=${pkgname}.install
-md5sums=('82198cedb0d817932d556b80c2676040')
+md5sums=('bcfacc650049ea4ed75537119589e852')
 
 build() {
   cd $pkgname-$pkgver
