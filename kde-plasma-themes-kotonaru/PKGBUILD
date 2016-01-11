@@ -5,18 +5,18 @@
 pkgname=kde-plasma-themes-kotonaru
 _name=kotonaru
 pkgver=3.0.0
-pkgrel=4
+pkgrel=5
 pkgdesc="solid clear theme for plasma"
 arch=('any')
 url=http://sourceforge.net/projects/kaosx/files/
 license=('CC-BY-SA')
-depends=(kde-workspace)
+depends=('plasma-workspace')
 source=(http://sourceforge.net/projects/kaosx/files/sources/plasma-themes/$pkgver/Kotonaru_$pkgver.tar.gz)
 sha256sums=('a812698d874350ae243d28b7fd80375547fae0f98f083c91c8b92b9a625bd1fc')
 
 package() {
   cd "${srcdir}/Kotonaru"
-  mkdir -p "${pkgdir}/usr/share/apps/desktoptheme/kotonaru"
-  cp -r * "${pkgdir}/usr/share/apps/desktoptheme/kotonaru"
-  chmod -R 0755 "${pkgdir}" "/usr/share/apps/desktoptheme/$_name"
+  install -d "${pkgdir}/usr/share/plasma/desktoptheme/kotonaru"
+  cp -r * "${pkgdir}/usr/share/plasma/desktoptheme/kotonaru"
+  chmod -R 0755 "${pkgdir}/usr/share/plasma/desktoptheme/$_name"
 }
