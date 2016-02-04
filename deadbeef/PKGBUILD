@@ -4,19 +4,20 @@
 # Contributor: Alexey Yakovenko <waker@users.sourceforge.net>
 
 pkgname=deadbeef
-pkgver=0.6.2
+pkgver=0.7.0
 pkgrel=1
 pkgdesc='A GTK+ audio player for GNU/Linux.'
-arch=('i686' 'x86_64')
+arch=('x86_64')
 url='http://deadbeef.sourceforge.net'
 license=('GPL2')
-depends=('gtk3' 'alsa-lib' 'hicolor-icon-theme' 'desktop-file-utils')
+depends=('gtk3' 'alsa-lib' 'hicolor-icon-theme' 'desktop-file-utils' 'jansson')
 makedepends=('libvorbis' 'libmad' 'flac' 'curl' 'imlib2' 'wavpack' 'libsndfile' 'libcdio' 'libcddb'
              'libx11' 'faad2' 'zlib' 'intltool' 'pkgconfig' 'libpulse' 'libzip' 'libsamplerate'
-             'yasm' 'ffmpeg')
+             'yasm' 'ffmpeg' 'gtk-update-icon-cache' 'mpg123' 'libcdio-paranoia')
 optdepends=('libsamplerate: for Resampler plugin'
             'libvorbis: for Ogg Vorbis playback'
             'libmad: for MP1/MP2/MP3 playback'
+            'mpg123: for MP3 playback'
             'flac: for FLAC playback'
             'curl: for Last.fm scrobbler, SHOUTcast, Icecast, Podcast support'
             'imlib2: for artwork plugin'
@@ -33,12 +34,12 @@ optdepends=('libsamplerate: for Resampler plugin'
             'ffmpeg: for ffmpeg plugin')
 install='deadbeef.install'
 source=("http://downloads.sourceforge.net/project/${pkgname}/${pkgname}-${pkgver}.tar.bz2")
-md5sums=('786f3a01fc9e03e73191d1cce43250a3')
+md5sums=('d5450785139757a016dcd4dfc66479c7')
 
 build() {
   cd "${srcdir}/${pkgname}-${pkgver}"
 
-  ./configure --prefix=/usr --enable-gtk3
+  ./configure --prefix=/usr
   make
 }
 
