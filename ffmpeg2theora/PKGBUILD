@@ -8,8 +8,8 @@
 # Contributor: Angelo Theodorou <encelo[at]users[dot]sourceforge[dot]net>
 
 pkgname=ffmpeg2theora
-pkgver=0.29
-pkgrel=3
+pkgver=0.30
+pkgrel=1
 pkgdesc="A simple converter to create Ogg Theora files."
 arch=('x86_64')
 url="http://www.v2v.cc/~j/ffmpeg2theora/"
@@ -17,9 +17,9 @@ license=('GPLv2')
 depends=('ffmpeg')
 makedepends=('scons')
 source=(http://www.v2v.cc/~j/${pkgname}/downloads/${pkgname}-${pkgver}.tar.bz2
-	ffmpeg2theora-0.29-underlinking.patch)
-sha512sums=('5e5cf1dbc6807a15b3a3e8526955ef341357b6a3106a6449a54b5dc09c652a9df34b5e93c9cbf05e1efad87542364cb8335e173a59a184aa2ff38ec4b536a725'
-            'a9c16e115d72400cd29c60e9893b89e37a1c4800edebc23ebd576c47b49c37ec69e31fe2de4bef50a32c1f60a1be5df5dae2b62000e8f558b30c440938652632')
+        'ffmpeg2theora-0.29-underlinking.patch')
+sha256sums=('4f6464b444acab5d778e0a3359d836e0867a3dcec4ad8f1cdcf87cb711ccc6df'
+            '3b937c7e3a5afe327ee75e246ef606a747b8fb5880b43a864b3b9db4a245ef7f')
 
 prepare() {
   cd "${srcdir}"/$pkgname-$pkgver
