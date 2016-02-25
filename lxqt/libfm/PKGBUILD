@@ -6,27 +6,25 @@
 # Contributor: Juergen Hoetzel <juergen@archlinux.org>
 
 pkgname=libfm
-pkgver=1.2.3
-pkgrel=4
+pkgver=1.2.4
+pkgrel=1
 pkgdesc='Library for file management'
 url='http://pcmanfm.sourceforge.net/'
 arch=('x86_64')
 license=('LGPL')
-depends=('menu-cache' 'desktop-file-utils' 'libexif' 'dbus-glib' 'libfm-extra' 'shared-mime-info')
+depends=('menu-cache' 'desktop-file-utils' 'libexif' 'dbus-glib' 'libfm-extra' 'shared-mime-info' 'vala')
 makedepends=('udisks' 'intltool')
 replaces=('lxshortcut')
 provides=('lxshortcut')
 conflicts=('lxshortcut')
 source=(http://downloads.sourceforge.net/pcmanfm/${pkgname}-${pkgver}.tar.xz)
-md5sums=('3ff38200701658f7e80e25ed395d92dd')
+md5sums=('74997d75e7e87dc73398746fd373bf52')
 install=${pkgname}.install
 
 build() {
   cd ${pkgname}-${pkgver}
   ./configure --prefix=/usr \
     --sysconfdir=/etc \
-    --enable-udisks \
-    --with-gnu-ld \
     --without-gtk
   make
 }
