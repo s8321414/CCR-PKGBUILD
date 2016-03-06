@@ -3,7 +3,7 @@
 # Maintainer: Zatherz <zatherz at linux dot pl>
 
 pkgname=qt5ct
-pkgver=0.21
+pkgver=0.22
 pkgrel=1
 pkgdesc="Qt5 Configuration Utility (requires Qt platform theme to be set to qt5ct)"
 arch=('x86_64')
@@ -13,7 +13,7 @@ depends=("qt5-base" "qt5-svg")
 makedepends=("qt5-tools")
 source=("http://sourceforge.net/projects/${pkgname}/files/${pkgname}-${pkgver}.tar.bz2")
 install=${pkgname}.install
-sha256sums=('7ac1213d01eb4a2ce2a02ed6e135d6b3e404657d6df941bf92a185e166077585')
+sha256sums=('a33d614c7af93cfdc295f21459b9fe39c6bedcbaf1a0c6dc1d26c18fca6d6c83')
 
 build() {
   cd "${srcdir}/${pkgname}-${pkgver}"
