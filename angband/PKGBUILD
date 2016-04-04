@@ -10,7 +10,7 @@
 # Contributor: Sebastian Sareyko <public@nooms.de>
 
 pkgname=angband
-pkgver=4.0.2
+pkgver=4.0.4
 pkgrel=1
 pkgdesc="A roguelike dungeon exploration game based on the writings of JRR Tolkien"
 arch=('x86_64')
@@ -19,7 +19,7 @@ license=('GPL2' 'custom')
 depends=('sdl_image' 'sdl_ttf' 'sdl_mixer' 'ncurses')
 makedepends=('python3-docutils')
 source=("http://rephial.org/downloads/${pkgver:0:3}/${pkgname}-${pkgver}.tar.gz")
-md5sums=('b4c96762281307e69b95114b9b3a6487')
+md5sums=('40896f314f2024b91303506adeff37ce')
 
 build() {
   cd "${srcdir}/${pkgname}-${pkgver}"
