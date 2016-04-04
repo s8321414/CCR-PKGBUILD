@@ -1,0 +1,32 @@
+Index: b/qt5-im/Makefile
+===================================================================
+--- a/qt5-im/Makefile
++++ b/qt5-im/Makefile
+@@ -3,11 +3,11 @@ QT=qt5
+ QTIM=$(QT)/plugins/platforminputcontexts
+ IMMODULES=$(libdir)/$(DEB_BUILD_MULTIARCH)/$(QTIM)
+ 
+-INCS=-I../im-client -I/usr/include/X11 `pkg-config Qt5Core Qt5Gui Qt5PlatformSupport QtDBus --cflags`
++INCS=-I../im-client -I/usr/include/X11 `pkg-config Qt5Core Qt5Gui Qt5DBus --cflags`
+ # dirty fix for ubuntu 14.04,  pkg-config Qt5Gui --cflags return -I/usr/include/qt5/QtGui, missing 5.2.1/QtGui
+ MODVERSION=`pkg-config --modversion Qt5Gui`
+-INCS+=-I/usr/include/qt5/QtGui/$(MODVERSION)/QtGui -I/usr/include/i386-linux-gnu/qt5/QtGui/$(MODVERSION)/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtGui/$(MODVERSION)/QtGui
+-INCS+=-I/usr/include/x86_64-linux-gnu/qt5/QtGui/$(MODVERSION)/QtGui
++INCS+=-I`pkg-config --variable=includedir Qt5Gui`/QtGui/$(MODVERSION)/QtGui
++INCS+=-I`pkg-config --variable=includedir Qt5Gui`/QtGui
+ 
+ CXXFLAGS=$(OPTFLAGS) $(INCS) -Wall -D_REENTRANT -DUNIX=1 -fPIC  -DQT5 -DQT_SHARED -DQT_IMMODULE -DPIC -DDEBUG="0$(GCIN_DEBUG)"
+ OBJS= moc_gcin-qt5.o gcin-qt5.o gcin-imcontext-qt5.o moc_qgcinplatforminputcontext.o
+@@ -22,10 +21,10 @@ all:    $(GCIN_QT5)
+ 	$(CXX) -E $(CFLAGS) $(INCS) $< > $@
+ 
+ moc_gcin-qt5.cpp:	gcin-qt5.h
+-	$(QT5_MOC) $< -o $@
++	$(QT5_MOC) $(INCS) $< -o $@
+ 
+ moc_qgcinplatforminputcontext.cpp:	qgcinplatforminputcontext.h
+-	$(QT5_MOC) $< -o $@
++	$(QT5_MOC) $(INCS) $< -o $@
+ 
+ $(GCIN_QT5): $(OBJS)
+ 	export LD_RUN_PATH=$(gcinlibdir) ;\
