@@ -2,21 +2,19 @@
 # Contributor: Enrique Bravo <sombrahelicopteroATgmailDOTcom>
 # Contributor: Markus00000 <xously at gmail dot com>
 pkgname=otf-fira-sans
-_pkgname=FiraSans
-pkgver=4.106
-_pkgver=4106
+pkgver=4.202
 pkgrel=1
 depends=('fontconfig' 'xorg-font-utils')
 pkgdesc="A sans-serif typeface designed for Firefox OS."
 arch=('any')
 url="https://www.mozilla.org/en-US/styleguide/products/firefox-os/typeface/"
 license=('custom:OFL')
-source=("http://www.carrois.com/downloads/fira_4_1/FiraFonts${_pkgver}.zip")
+source=("https://github.com/mozilla/Fira/archive/${pkgver}.zip")
 install=${pkgname}.install
-md5sums=('6b6fef01497a28403bd0a9c34224d998')
+md5sums=('15c55f4ab550934a06d16fa66357de5f')
 
 package() {
-  cd ${srcdir}/FiraFonts${_pkgver}/OTF
+  cd ${srcdir}/Fira-${pkgver}/ttf
   install -dm755 "${pkgdir}/usr/share/fonts/OTF"
-  install -m0644 *.otf "${pkgdir}/usr/share/fonts/OTF/"
+  install -m0644 FiraSans*.otf "${pkgdir}/usr/share/fonts/OTF/"
 }
