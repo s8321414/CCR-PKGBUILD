@@ -6,7 +6,7 @@
 # Contributor: Daniel J Griffiths <ghost1227@archlinux.us>
 
 pkgname=qcad
-pkgver=3.11.0.0
+pkgver=3.14.2.0
 pkgrel=1
 pkgdesc="A 2D CAD package based upon Qt"
 arch=('x86_64')
@@ -17,7 +17,7 @@ makedepends=('glu' 'gdb')
 options=('libtool')
 source=($pkgname-$pkgver.tar.gz::https://github.com/qcad/qcad/archive/v${pkgver}.tar.gz
         QCad.desktop)
-md5sums=('a7cb328767569bc851f638fcb0199d08'
+md5sums=('d76f0954f0e4031da6284fd964950df6'
          '35100eaedbdf6625f6e6a09b177854cd')
 
 build() {
