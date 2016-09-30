@@ -5,15 +5,15 @@
 # Contributor: Evangelos Foutras <foutrelis@gmail.com>
 
 pkgname=('python3-pyinotify')
-pkgver=0.9.5
-pkgrel=2
+pkgver=0.9.6
+pkgrel=1
 pkgdesc='Python module used for monitoring filesystems events on Linux platforms with inotify.'
 arch=('any')
 url="http://github.com/seb-m/pyinotify"
 license=('custom:MIT')
 depends=('python3')
 source=("http://seb.dbzteam.org/pub/pyinotify/releases/pyinotify-${pkgver}.tar.gz")
-md5sums=('e4f742b2d12cc404e751d11afb8f01d5')
+md5sums=('8e580fa1ff3971f94a6f81672b76c406')
 
 
 build() {
