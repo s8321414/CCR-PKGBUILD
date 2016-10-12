@@ -4,7 +4,7 @@
 # Contributor: Alexey Yakovenko <waker@users.sourceforge.net>
 
 pkgname=deadbeef
-pkgver=0.7.0
+pkgver=0.7.2
 pkgrel=1
 pkgdesc='A GTK+ audio player for GNU/Linux.'
 arch=('x86_64')
@@ -34,7 +34,7 @@ optdepends=('libsamplerate: for Resampler plugin'
             'ffmpeg: for ffmpeg plugin')
 install='deadbeef.install'
 source=("http://downloads.sourceforge.net/project/${pkgname}/${pkgname}-${pkgver}.tar.bz2")
-md5sums=('d5450785139757a016dcd4dfc66479c7')
+md5sums=('f8f5353e7c201fce316f8b082ab408bb')
 
 build() {
   cd "${srcdir}/${pkgname}-${pkgver}"
