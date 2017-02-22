@@ -4,16 +4,16 @@
 # Contributor: Matthew Stobbs <matthew@stobbstechnical.com>
 
 pkgname=lxqt-admin
-pkgver=0.11.0
+pkgver=0.11.1
 pkgrel=1
 pkgdesc="LXQt system administration"
 arch=("x86_64")
 url="http://lxqt.org"
 license=("LGPL2.1")
-depends=("liblxqt" "kwindowsystem" "qt5-base" "systemd")
-makedepends=("cmake" "qt5-tools")
-source=(http://downloads.lxqt.org/lxqt/${pkgver}/${pkgname}-${pkgver}.tar.xz)
-sha256sums=('34eb3a5cd93d10b1440b0a098b21d5bc512f76dc03ab36dfd78c57e9cb9da6a2')
+depends=("liblxqt" "polkit")
+makedepends=("cmake" "qt5-tools" "lxqt-build-tools")
+source=(https://github.com/lxde/$pkgname/releases/download/$pkgver/$pkgname-$pkgver.tar.xz)
+sha256sums=('b4b26df2901abf84742ff1daf17dbca6e145cf55552efbf424e6c77012b946cb')
 
 build() {
 	cd "${srcdir}/${pkgname}-${pkgver}"
