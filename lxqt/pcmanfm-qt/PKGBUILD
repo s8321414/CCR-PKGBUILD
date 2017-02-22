@@ -3,18 +3,18 @@
 # Maintainer: Jerome Leclanche <jerome@leclan.ch>
 
 pkgname=pcmanfm-qt
-pkgver=0.11.1
+pkgver=0.11.3
 pkgrel=1
 pkgdesc="The LXQt file manager, Qt port of PCManFM."
 arch=('x86_64')
 url="http://lxqt.org"
 license=('GPL2')
-depends=("liblxqt" "libfm" "libfm-qt" "lxmenu-data")
-makedepends=("cmake" "qt5-tools")
+depends=("libfm" "libfm-qt" "lxmenu-data")
+makedepends=("cmake" "qt5-tools" "lxqt-build-tools")
 conflicts=('pcmanfm-qt-git')
-source=(https://downloads.lxqt.org/${pkgname}/${pkgver}/${pkgname}-${pkgver}.tar.xz)
+source=(https://github.com/lxde/$pkgname/releases/download/$pkgver/$pkgname-$pkgver.tar.xz)
 install=${pkgname}.install
-sha256sums=('fd035da1f74506f2897fc94b874def521a88a2f4f82c7eea1eb406375a2571fa')
+sha256sums=('d0273344d6fc578e05f832997dffe8d5ba6c3369a1077aa3e8ee23c6aa5b2f7f')
 
 build() {
 	cd "${srcdir}/${pkgname}-${pkgver}"
