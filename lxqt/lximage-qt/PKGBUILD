@@ -3,7 +3,7 @@
 # Maintainer: Jerome Leclanche <jerome@leclan.ch>
 
 pkgname=lximage-qt
-pkgver=0.5.0
+pkgver=0.5.1
 pkgrel=1
 pkgdesc="The LXQt image viewer"
 arch=('x86_64')
@@ -11,11 +11,11 @@ url="http://lxqt.org"
 license=('GPL')
 conflicts=('lximage-qt-git')
 replace=('lximage-qt-git')
-depends=('pcmanfm-qt' 'qt5-x11extras' 'qt5-svg')
-makedepends=('cmake' 'qt5-tools' 'liblxqt')
-source=(http://downloads.lxqt.org/${pkgname}/${pkgver}/${pkgname}-${pkgver}.tar.xz)
+depends=('libfm-qt' 'qt5-x11extras' 'qt5-svg')
+makedepends=('cmake' 'qt5-tools' 'lxqt-build-tools')
+source=(https://github.com/lxde/$pkgname/releases/download/$pkgver/$pkgname-$pkgver.tar.xz)
 install=${pkgname}.install
-md5sums=('5cee89e6076fc33975410ed309252a88')
+md5sums=('90b79b017649a06b0eb6178590143856')
 
 build() {
 	cd "${srcdir}/${pkgname}-${pkgver}"
