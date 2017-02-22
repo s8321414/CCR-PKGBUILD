@@ -3,7 +3,7 @@
 # Maintainer: Jerome Leclanche <jerome@leclan.ch>
 
 pkgname=lxqt-panel
-pkgver=0.11.0
+pkgver=0.11.1
 pkgrel=1
 pkgdesc="The LXQt desktop panel"
 arch=("x86_64")
@@ -12,9 +12,16 @@ license=("GPL2")
 depends=("libdbusmenu-qt5" "libxcomposite" "lxmenu-data" "lxqt-common"
 	 "lxqt-globalkeys" "menu-cache" "solid" "libpulse" "libstatgrab"
 	 "libsysstat" "lm_sensors")
-makedepends=("cmake" "qt5-tools")
-source=(https://downloads.lxqt.org/lxqt/${pkgver}/${pkgname}-${pkgver}.tar.xz)
-sha256sums=('18415624d862b9b269fd1f74b2b6a51776852babd057e701e5d5b48ce46e777c')
+makedepends=("cmake" "qt5-tools" "lxqt-build-tools")
+source=(https://github.com/lxde/$pkgname/releases/download/$pkgver/$pkgname-$pkgver.tar.xz
+        fix-build.patch)
+sha256sums=('cfbe1862a2614ff8e22bc8db795a6cbce106243822d90370970eb0bbd5aea5e0'
+            '994ad0a8873e1a190fb6890c19e5f65b863fc2b2faf1973ed27b3db31e9a9cfb')
+
+prepare() {
+	cd "$srcdir/$pkgname-$pkgver"
+	patch -Np1 -i "$srcdir/fix-build.patch"
+}
 
 build() {
 	cd "${srcdir}/${pkgname}-${pkgver}"
