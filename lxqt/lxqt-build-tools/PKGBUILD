@@ -1,0 +1,26 @@
+# COntributions from Arch:
+# Maintainer: Jerome Leclanche <jerome@leclan.ch>
+
+pkgname=lxqt-build-tools
+pkgver=0.3.2
+pkgrel=1
+pkgdesc="Various packaging tools and scripts for LXQt applications"
+arch=("any")
+url="http://lxqt.org"
+license=("LGPL2.1")
+depends=("cmake" "qt5-tools" "git")
+source=("https://github.com/lxde/$pkgname/releases/download/$pkgver/$pkgname-$pkgver.tar.xz")
+sha256sums=("726fca2597fb438cc6dcdea1b9e34d719ff0fa371fcd9a304c608e425ff364ef")
+
+build() {
+	mkdir -p build
+	cd build
+	cmake "$srcdir/$pkgname-$pkgver" \
+		-DCMAKE_INSTALL_PREFIX=/usr
+	make
+}
+
+package() {
+	cd build
+	make DESTDIR="$pkgdir" install
+}
