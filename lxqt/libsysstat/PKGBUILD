@@ -3,16 +3,16 @@
 # Maintainer: Jerome Leclanche <jerome@leclan.ch>
 
 pkgname=libsysstat
-pkgver=0.3.2
+pkgver=0.3.3
 pkgrel=1
 pkgdesc="Library to query system statistics (net, resource usage, ...)"
 arch=("x86_64")
 url="http://lxqt.org"
 license=("LGPL2.1")
 depends=("qt5-base")
-makedepends=("cmake" "qt5-tools")
-source=(https://downloads.lxqt.org/${pkgname}/${pkgver}/${pkgname}-${pkgver}.tar.xz)
-sha256sums=('783ce129e781a9d7cd22b31f59ca6d739801dd4ec7107545084bbfb25aab2838')
+makedepends=("cmake" "qt5-tools" "lxqt-build-tools")
+source=(https://github.com/lxde/libsysstat/releases/download/$pkgver/$pkgname-$pkgver.tar.xz)
+sha256sums=('e58640e169e12b6fa35af86cadc3a807f29de29951c7463832a82d22eed14f06')
 
 build() {
 	cd "${srcdir}/${pkgname}-${pkgver}"
