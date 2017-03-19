@@ -4,7 +4,7 @@
 
 pkgname=gcin
 pkgver=2.8.5
-pkgrel=1
+pkgrel=2
 pkgdesc='Input method server supporting various input methods'
 arch=('x86_64')
 license=('LGPL')
@@ -18,12 +18,12 @@ optdepends=('qt: support for qt4 input method'
 install=${pkgname}.install
 source=("http://hyperrate.com/gcin-source/${pkgname}-${pkgver}.tar.xz"
 	'qt4.patch'
-	'gcin-fix-qt5-iid.patch'
+	'qt-5.5.patch'
 	'gcin-improve-build-with-pkgconfig.patch'
 	'cxx11.patch')
 sha1sums=('0bed162df43e3d5f65ff9f183b7957cdd9678731'
           '8cb63a2e368aa43769532812bfc2c724327cfe53'
-          '2559ef9d09cb917c0631d4762bb1b91c0f41aa5a'
+          'fd29b91d7b573546ecb3a8cb0341d4f11364cd1a'
           '54eac50658d03f16090c8da0e8903a34f782b9d9'
           'cedf58db2a3c05c8db0a325380990b93d9ae4087')
 
@@ -31,7 +31,7 @@ prepare() {
   cd "${srcdir}/${pkgname}-${pkgver}"
 
   patch -p1 -i ../qt4.patch
-  patch -p1 -i ../gcin-fix-qt5-iid.patch
+  patch -p1 -i ../qt-5.5.patch
   patch -p1 -i ../gcin-improve-build-with-pkgconfig.patch
   patch -p1 -i ../cxx11.patch
   
@@ -41,6 +41,13 @@ prepare() {
         LDFLAGS+='"${LDFLAGS}"' \
         OPTFLAGS=' \
         -i Makefile
+  
+  sed \
+        -e '/^MODVERSION=/a INCS+=-I/usr/include/qt5/QtGui/$(MODVERSION) -I/usr/include/qt5/QtCore/$(MODVERSION)' \
+        -i qt5-im/Makefile
+  
+  # Qt 5.6 doesn't provide Qt5PlatformSupport.pc anymore
+    sed -i 's/Qt5PlatformSupport//' qt5-im/Makefile
 }
 
 build() {
