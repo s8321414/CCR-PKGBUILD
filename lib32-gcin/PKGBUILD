@@ -6,20 +6,20 @@
 
 _pkgname=gcin
 pkgname=lib32-${_pkgname}
-pkgver=2.8.4
-pkgrel=1
+pkgver=2.8.5
+pkgrel=2
 pkgdesc='gcin im-module for 32-bit applications'
 url='http://hyperrate.com/dir.php?eid=67'
 license=('LGPL')
 arch=('x86_64')
 depends=("gcin")
-makedepends=('lib32-gtk2' 'lib32-qt' 'gcc-multilib')
+makedepends=('lib32-gtk2' 'lib32-qt' 'lib32-gcc-libs')
 install='lib32-gcin-gtk2.install'
 source=("http://hyperrate.com/gcin-source/${_pkgname}-${pkgver}.tar.xz"
 	"qconfig.h"
 	"configure.patch"
 	"qt4-im.patch")
-sha1sums=('f422d58aecf65f1d674c79c5c5d346ae568d52d3'
+sha1sums=('0bed162df43e3d5f65ff9f183b7957cdd9678731'
           '6c36b1b7d1240ae8391ac7e52997f464149a6347'
           '98d43080da65b6ac63e747d2a9da41abd5ce11d2'
           '35a288dd74f28fd730ac093878680f74630ea57b')
@@ -68,7 +68,4 @@ package(){
 	#lib32-gcin-qt4
 	cd "${srcdir}/${_pkgname}-${pkgver}/qt4-im"
 	make DESTDIR="${pkgdir}" install
-	
-	mv ${pkgdir}/usr/lib/* ${pkgdir}/usr/lib32
-	rm -r ${pkgdir}/usr/lib
 }

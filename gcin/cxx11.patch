@@ -1,0 +1,11 @@
+--- gcin-2.8.5.orig/qt5-im/Makefile	2015-10-17 10:08:40.000000000 +0800
++++ gcin-2.8.5/qt5-im/Makefile	2017-03-19 11:15:02.613827368 +0800
+@@ -9,7 +9,7 @@
+ INCS+=-I$(QTINC)/QtGui/$(MODVERSION)/QtGui
+ #INCS+=-I/usr/include/i386-linux-gnu/qt5/QtGui/$(MODVERSION)/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtGui/$(MODVERSION)/QtGui
+ 
+-CXXFLAGS=$(OPTFLAGS) $(INCS) -Wall -D_REENTRANT -DUNIX=1 -fPIC  -DQT5 -DQT_SHARED -DQT_IMMODULE -DPIC -DDEBUG="0$(GCIN_DEBUG)"
++CXXFLAGS=$(OPTFLAGS) $(INCS) -Wall -D_REENTRANT -DUNIX=1 -fPIC  -DQT5 -DQT_SHARED -DQT_IMMODULE -DPIC -DDEBUG="0$(GCIN_DEBUG)" -std=c++11
+ OBJS= moc_gcin-qt5.o gcin-qt5.o gcin-imcontext-qt5.o moc_qgcinplatforminputcontext.o
+ .SUFFIXES:	.c .cpp .a .so .E .h
+ LDFLAGS=-L../im-client -lgcin-im-client `pkg-config Qt5Core Qt5Gui Qt5PlatformSupport --libs`
