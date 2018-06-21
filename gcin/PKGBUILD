@@ -1,15 +1,15 @@
 # Contributor: Giuseppe Calà <jiveaxe@gmail.com>
 # Contributor: Brli <rainman59118 at gmail.com> & Chakra Taiwan Community
-# Maintainer: s8321414 <s8321414 at chakraos.org> & Chakra Taiwan Community
+# Maintainer: s8321414 <s8321414 at chakralinux.org> & Chakra Taiwan Community
 
 pkgname=gcin
-pkgver=2.8.5
-pkgrel=3
+pkgver=2.8.6
+pkgrel=1
 pkgdesc='Input method server supporting various input methods'
 arch=('x86_64')
 license=('LGPL')
 url='http://hyperrate.com/dir.php?eid=67'
-depends=('gtk2' 'libxtst')
+depends=('gtk2' 'libxtst' 'curl')
 makedepends=('qt' 'anthy' 'qt5-base' 'gtk3')
 optdepends=('qt: support for qt4 input method'
             'qt5-base: support for qt5 input method'
@@ -20,12 +20,12 @@ source=("http://hyperrate.com/gcin-source/${pkgname}-${pkgver}.tar.xz"
 	'qt4.patch'
 	'gcin-fix-qt5-iid.patch'
 	'gcin-improve-build-with-pkgconfig.patch'
-	'cxx11.patch')
-sha1sums=('0bed162df43e3d5f65ff9f183b7957cdd9678731'
+        'gcin-dont-copy-gcin-qt5-header.patch')
+sha1sums=('be6b3f2253976f1448788b2f7c4de43bb3d907c3'
           '8cb63a2e368aa43769532812bfc2c724327cfe53'
           '2559ef9d09cb917c0631d4762bb1b91c0f41aa5a'
-          '54eac50658d03f16090c8da0e8903a34f782b9d9'
-          'cedf58db2a3c05c8db0a325380990b93d9ae4087')
+          '737ba36743271288aa307c09eee590779fba17c4'
+          '3a52dc43e28c5b0de5c19e955506089fb85a3ab4')
 
 prepare() {
   cd "${srcdir}/${pkgname}-${pkgver}"
@@ -36,7 +36,7 @@ prepare() {
   patch -p1 -i ../qt4.patch
   patch -p1 -i ../gcin-fix-qt5-iid.patch
   patch -p1 -i ../gcin-improve-build-with-pkgconfig.patch
-  patch -p1 -i ../cxx11.patch
+  patch -p1 -i ../gcin-dont-copy-gcin-qt5-header.patch
   
   sed 's/lib64/lib/g' -i configure
   sed '/include suffixes-rule/a \

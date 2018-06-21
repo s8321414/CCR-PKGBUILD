@@ -6,8 +6,8 @@
 
 _pkgname=gcin
 pkgname=lib32-${_pkgname}
-pkgver=2.8.5
-pkgrel=2
+pkgver=2.8.6
+pkgrel=1
 pkgdesc='gcin im-module for 32-bit applications'
 url='http://hyperrate.com/dir.php?eid=67'
 license=('LGPL')
@@ -19,7 +19,7 @@ source=("http://hyperrate.com/gcin-source/${_pkgname}-${pkgver}.tar.xz"
 	"qconfig.h"
 	"configure.patch"
 	"qt4-im.patch")
-sha1sums=('0bed162df43e3d5f65ff9f183b7957cdd9678731'
+sha1sums=('be6b3f2253976f1448788b2f7c4de43bb3d907c3'
           '6c36b1b7d1240ae8391ac7e52997f464149a6347'
           '98d43080da65b6ac63e747d2a9da41abd5ce11d2'
           '35a288dd74f28fd730ac093878680f74630ea57b')
