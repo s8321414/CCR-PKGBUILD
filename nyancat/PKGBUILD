@@ -1,0 +1,27 @@
+% Contributions from Arch:
+# Maintainer: Felix Yan <felixonmars@archlinux.org>
+# Contributor: Limao Luo <luolimao+AUR@gmail.com>
+
+pkgname=nyancat
+pkgver=1.5.2
+pkgrel=1
+pkgdesc="Nyancat rendered in your terminal."
+arch=('x86_64')
+url=https://nyancat.dakko.us/
+license=('custom:NCSA')
+depends=('glibc')
+source=("$pkgname-$pkgver.tar.gz::https://github.com/klange/$pkgname/archive/$pkgver.tar.gz")
+sha256sums=('88cdcaa9c7134503dd0364a97fa860da3381a09cb555c3aae9918360827c2032')
+
+build() {
+  make -C $pkgname-$pkgver
+}
+
+package() {
+  cd $pkgname-$pkgver
+  install -Dm755 src/$pkgname "$pkgdir"/usr/bin/$pkgname
+  install -Dm644 $pkgname.1 "$pkgdir"/usr/share/man/man1/$pkgname.1
+
+  install -d "$pkgdir/usr/lib/systemd/system"
+  install -m644 systemd/* "$pkgdir/usr/lib/systemd/system"
+}
