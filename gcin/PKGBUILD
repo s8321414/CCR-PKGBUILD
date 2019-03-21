@@ -1,30 +1,32 @@
-# Contributor: Giuseppe Calà <jiveaxe@gmail.com>
-# Contributor: Brli <rainman59118 at gmail.com> & Chakra Taiwan Community
 # Maintainer: s8321414 <s8321414 at chakralinux.org> & Chakra Taiwan Community
+# Contributor: Brli <rainman59118 at gmail.com> & Chakra Taiwan Community
+# Contributor: Giuseppe Calà <jiveaxe@gmail.com>
 
 pkgname=gcin
-pkgver=2.8.8
+pkgver=2.8.9
 pkgrel=1
 pkgdesc='Input method server supporting various input methods'
 arch=('x86_64')
 license=('LGPL')
 url='https://hyperrate.com/dir.php?eid=67'
-depends=('gtk2' 'libxtst' 'curl')
-makedepends=('qt' 'anthy' 'qt5-base' 'gtk3')
+depends=('gtk3' 'libxtst' 'curl')
+makedepends=('qt' 'anthy' 'qt5-base' 'gtk2')
 optdepends=('qt: support for qt4 input method'
             'qt5-base: support for qt5 input method'
-            'gtk3: support for gtk3 input method'
+            'gtk2: support for gtk2 input method'
             'anthy: support for anthy input method')
-install=${pkgname}.install
-source=("http://hyperrate.com/gcin-source/${pkgname}-${pkgver}.tar.xz"
-	'qt4.patch')
-sha1sums=('1e659c82562b9c5234bc31dab3e5dc2884fb188f'
-          '8cb63a2e368aa43769532812bfc2c724327cfe53')
+source=("https://hyperrate.com/gcin-source/${pkgname}-${pkgver}.tar.xz"
+	'qt4.patch'
+	'fix-gtk-immodules-path.patch')
+sha256sums=('e08426cc85c5932392ebf73ac7d140cd778862517c3ea0cf8953aaab6c14d078'
+            'dbf9c32ac0059c62ea4628b277810c1b1c02e2ace98ae255f18c0bec0a348daa'
+            '578c67fd1d405e7d6ee9910bbfd152fb940f577953c7ed844b28924bd786b883')
 
 prepare() {
   cd "${srcdir}/${pkgname}-${pkgver}"
   
   patch -p1 -i ../qt4.patch
+  patch -Np1 -i ../fix-gtk-immodules-path.patch
   
   sed 's/lib64/lib/g' -i configure
   sed '/include suffixes-rule/a \
@@ -32,24 +34,16 @@ prepare() {
         LDFLAGS+='"${LDFLAGS}"' \
         OPTFLAGS=' \
         -i Makefile
-  
-  #sed \
-        #-e '/^MODVERSION=/a INCS+=-I/usr/include/qt5/QtGui/$(MODVERSION) -I/usr/include/qt5/QtCore/$(MODVERSION)' \
-        #-i qt5-im/Makefile
 }
 
 build() {
   cd "${srcdir}/${pkgname}-${pkgver}"
 
-  ./configure --prefix=/usr \
-              --use_i18n=Y \
-              --gcinlibdir=/usr/lib
+  ./configure --prefix=/usr --use_i18n=Y
   make
 }
 
 package() {
   cd "${srcdir}/${pkgname}-${pkgver}"
   make DESTDIR="${pkgdir}" install
-  mkdir -p ${pkgdir}/usr/lib/gtk-2.0/2.10.0
-  mv "${pkgdir}/usr/lib/gtk-2.0/immodules" "${pkgdir}/usr/lib/gtk-2.0/2.10.0/immodules"
 }
