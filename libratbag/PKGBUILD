@@ -3,7 +3,7 @@
 
 pkgname=libratbag
 pkgver=0.12
-pkgrel=1
+pkgrel=2
 pkgdesc='A DBus daemon to configure gaming mice'
 arch=('x86_64')
 url='https://github.com/libratbag/libratbag'
@@ -24,7 +24,8 @@ build() {
 
   chakra-meson .. \
   	-Dsystemd-unit-dir=/usr/lib/systemd/system \
-  	-Ddocumentation=true
+  	-Ddocumentation=true \
+        -Dtests=false
 
   ninja
 }
