@@ -2,8 +2,8 @@
 # Maintainer: Filipe Laíns (FFY00) <lains@archlinux.org>
 
 pkgname=libratbag
-pkgver=0.12
-pkgrel=2
+pkgver=0.13
+pkgrel=1
 pkgdesc='A DBus daemon to configure gaming mice'
 arch=('x86_64')
 url='https://github.com/libratbag/libratbag'
@@ -12,7 +12,7 @@ depends=('glib2' 'libevdev' 'libudev.so' 'libunistring' 'json-glib' 'python3' 'p
 makedepends=('meson' 'swig' 'git' 'python3-sphinx' 'python3-sphinx_rtd_theme')
 optdepends=('linux: Linux 5.2 is required for Logitech wireless devices')
 source=("$pkgname-$pkgver.tar.gz::$url/archive/v$pkgver.tar.gz")
-sha256sums=('62d2b7215019d800392aa0fcb635127334661fbc011f169cac9d86d436d13f0c')
+sha256sums=('b0a71851e5781eed789f5ba5f44bc6bc36ec4a7ef77fcc0303976149f3f719c9')
 
 prepare() {
   sed -i 's|sphinx-build3|sphinx-build|' $pkgname-$pkgver/doc/meson.build
