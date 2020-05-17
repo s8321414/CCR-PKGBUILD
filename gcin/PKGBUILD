@@ -3,44 +3,38 @@
 # Contributor: Giuseppe Calà <jiveaxe@gmail.com>
 
 pkgname=gcin
-pkgver=2.8.9
+pkgver=2.9.0
 pkgrel=1
 pkgdesc='Input method server supporting various input methods'
 arch=('x86_64')
 license=('LGPL')
 url='https://hyperrate.com/dir.php?eid=67'
 depends=('gtk3' 'libxtst' 'curl')
-makedepends=('qt' 'anthy' 'qt5-base' 'gtk2')
-optdepends=('qt: support for qt4 input method'
-            'qt5-base: support for qt5 input method'
+makedepends=('anthy' 'qt5-base' 'gtk2')
+optdepends=('qt5-base: support for qt5 input method'
             'gtk2: support for gtk2 input method'
             'anthy: support for anthy input method')
 source=("https://hyperrate.com/gcin-source/${pkgname}-${pkgver}.tar.xz"
-	'qt4.patch'
 	'fix-gtk-immodules-path.patch')
-sha256sums=('e08426cc85c5932392ebf73ac7d140cd778862517c3ea0cf8953aaab6c14d078'
-            'dbf9c32ac0059c62ea4628b277810c1b1c02e2ace98ae255f18c0bec0a348daa'
+sha256sums=('8ae41fb35911112989a9388d66b678d142e05afe3e09063c9ef6fd5746127e60'
             '578c67fd1d405e7d6ee9910bbfd152fb940f577953c7ed844b28924bd786b883')
 
 prepare() {
   cd "${srcdir}/${pkgname}-${pkgver}"
   
-  patch -p1 -i ../qt4.patch
   patch -Np1 -i ../fix-gtk-immodules-path.patch
   
-  sed 's/lib64/lib/g' -i configure
-  sed '/include suffixes-rule/a \
-        CFLAGS+='"${CFLAGS}"' \
-        LDFLAGS+='"${LDFLAGS}"' \
-        OPTFLAGS=' \
-        -i Makefile
+  sed -e 's/lib64/lib/g' \
+        -e "s/^OPTFLAGS=.*/OPTFLAGS=\"$CFLAGS $CPPFLAGS\"/" \
+        -e "s/echo \"LDFLAGS=/echo \"LDFLAGS=$LDFLAGS /" \
+        -e "s/echo \"SO_FLAGS=/echo \"SO_FLAGS=$LDFLAGS /" \
+        -i configure
 }
 
 build() {
   cd "${srcdir}/${pkgname}-${pkgver}"
-
   ./configure --prefix=/usr --use_i18n=Y
-  make
+  make -j1
 }
 
 package() {
