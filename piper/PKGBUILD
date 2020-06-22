@@ -2,7 +2,7 @@
 # Maintainer: Filipe Laíns (FFY00) <lains@archlinux.org>
 
 pkgname=piper
-pkgver=0.4
+pkgver=0.5.1
 pkgrel=1
 pkgdesc='GTK application to configure gaming mice'
 arch=('any')
@@ -11,7 +11,7 @@ license=('GPL')
 depends=('python3' 'python3-gobject' 'libratbag>=0.9.900' 'python3-evdev' 'python3-lxml' 'python3-cairo')
 makedepends=('meson')
 source=("$pkgname-$pkgver.tar.gz::$url/archive/$pkgver.tar.gz")
-sha256sums=('d62db7509348506cfb17588612cdf03877dbe0bca26904519eef9657e45bfb28')
+sha256sums=('6a5f4ecfd8f9883a2db9c9692adbf2a3c43d3a6485929428ee9bfe2d421d3cce')
 
 prepare() {
   cd $pkgname-$pkgver
